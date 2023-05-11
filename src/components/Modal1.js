@@ -1,18 +1,14 @@
 import { useEffect } from "react";
 import "./Modal.css";
 
-
-
-const Modal=({setModalOpen,contract})=>{
-    const sharing=async()=>{
+const Modal1=({setModalOpen1,contract})=>{
+    const nosharing=async()=>{
         //fetching address which we gave ip so that we can share data with it
         const address=document.querySelector(".address").value;
-        await contract.allow(address)
+        await contract.disallow(address)
     };
-    
-    //to show the list(people with access)
     useEffect(()=>{
-        const accessList=async()=>{
+        const noaccessList=async()=>{
             const addressList=await contract.shareAccess();//calling the shareAccess()
             let select=document.querySelector("#selectNumber");
             const options=addressList;
@@ -25,15 +21,12 @@ const Modal=({setModalOpen,contract})=>{
                 select.appendChild(e1);
             }
         }
-        contract && accessList();
+        contract && noaccessList();
     },[]);
-    
-    
     return<>
-    
     <div className="modalBackground">
         <div className="modalContainer">
-         <div className="title">Share with</div>
+    <div className="title">Deny access to</div>
          <div className="body">
          <input type="text" className="address" placeholder="Enter address"></input></div>
          <form id="myForm">
@@ -42,15 +35,11 @@ const Modal=({setModalOpen,contract})=>{
             </select>
          </form>
          <div className="footer">
-            <button onClick={()=>{setModalOpen(false)}} id="cancelBtn">Cancel</button>
-            <button onClick={()=>sharing()}>Share</button>
+            <button onClick={()=>{setModalOpen1(false)}} id="cancelBtn">Cancel</button>
+            <button onClick={()=>nosharing()}>Deny</button>
          </div>
-         
-        </div>
-    </div>
     
-        
-    
+         </div></div>
     </>
 }
-export default Modal;
+export default Modal1;

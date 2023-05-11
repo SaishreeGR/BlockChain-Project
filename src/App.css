@@ -132,6 +132,10 @@ p {
 .share {
   padding: 16px;
   margin-top: 10px;
+  margin-left: 20px;
+  position: relative;
+  top: 450px;
+  left: 580px;
   vertical-align: center;
   background: #f44336;
   width: 70px;
@@ -141,7 +145,7 @@ p {
   border-radius: 4px;
   font-size: 13px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  z-index: -1;
+  z-index: 1;
 }
 
 .share:hover {

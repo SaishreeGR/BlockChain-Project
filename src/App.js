@@ -4,6 +4,7 @@ import { ethers } from "ethers";//to interact with blockchain
 import FileUpload from "./components/FileUpload";
 import Display from "./components/Display";
 import Modal from "./components/Modal";
+import Modal1 from "./components/Modal1";
 import './App.css';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const [contract,setContract]=useState(null);
   const [provider,setProvider]=useState(null);
   const [modalOpen,setModalOpen]=useState(false);// if this is true only show modal component not always
+  const [modalOpen1,setModalOpen1]=useState(false);
 
   useEffect(()=>{
     //get provider and signer from browser window
@@ -32,7 +34,7 @@ function App() {
         const signer=provider.getSigner();//to write data on blockchain
         const address=await signer.getAddress();// which account is connected fetch it
         setAccount(address);//we set the connected account
-        let contractAddress="0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
+        let contractAddress="0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
         const contract=new ethers.Contract(
           contractAddress,Upload.abi,signer// to create smart contract instance we need these and we are creating contract instance
@@ -51,6 +53,9 @@ function App() {
     <>{!modalOpen && (<button className="share" onClick={()=>setModalOpen(true)}>Share</button>)}
     {modalOpen&&(
     <Modal setModalOpen={setModalOpen} contract={contract}></Modal>)}
+    {!modalOpen1 && (<button className="share" onClick={()=>setModalOpen1(true)}>Deny</button>)}
+    {modalOpen1&&(
+    <Modal1 setModalOpen1={setModalOpen1} contract={contract}></Modal1>)}
     <div className="App">
       <h1 style={{color:"white"}}>Decentralized File System</h1>
       <div class="bg"></div>
